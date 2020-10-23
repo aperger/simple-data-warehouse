@@ -1,0 +1,7 @@
+spring:
+  data:
+    rest:
+      basePath: /api/rest/
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
