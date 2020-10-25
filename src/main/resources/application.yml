@@ -1,7 +1,24 @@
+logging:
+  level:
+    com.adverity.demo.simpledatawarehouse: TRACE
+    # org.hibernate.tool.hbm2ddl: DEBUG
+
 spring:
+
+  jpa:
+    database: default # auto detect dialects with this
+    generate-ddl: false
+    show-sql: false
+
   data:
     rest:
-      basePath: /api/rest/
+      basePath: /warehouse/rest/
   jackson:
     serialization:
       FAIL_ON_EMPTY_BEANS: false
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui-custom.html

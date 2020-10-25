@@ -14,6 +14,7 @@ import javax.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -28,6 +29,9 @@ public class InitializeDataWarehouse {
 	@Autowired
 	StatisticRepository repository;
 
+	@Value("${data-warehouse.resource-name:statistics.csv}")
+	String resourceName;
+
 	@EventListener(ApplicationReadyEvent.class)
 	public void doInit() {
 		loadDataFromResource();
@@ -41,7 +45,7 @@ public class InitializeDataWarehouse {
 
 	@Transactional
 	private void loadResourceFile() {
-		InputStream is = getResourceFileAsInputStream("statistics.csv");
+		InputStream is = getResourceFileAsInputStream(resourceName);
 		if (is != null) {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 

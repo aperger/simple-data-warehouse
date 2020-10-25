@@ -18,7 +18,6 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
-@Profile("test")
 @Import(JpaRepositoryConfig.class)
 public class MemoryDBConfig {
 

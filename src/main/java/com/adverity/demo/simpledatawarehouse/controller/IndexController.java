@@ -8,7 +8,7 @@ public class IndexController {
 
 	@GetMapping(value = "/")
 	public String actionIndex() {
-		return "redirect:/api/rest/explorer/index.html#uri=/api/rest/statistics/search";
+		return "index";
 	}
 
 }

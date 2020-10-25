@@ -1,7 +1,9 @@
 package com.adverity.demo.simpledatawarehouse.config;
 
 import com.adverity.demo.simpledatawarehouse.entity.Statistic;
-import com.adverity.demo.simpledatawarehouse.projection.StatisticDefaultProjection;
+import com.adverity.demo.simpledatawarehouse.projection.StatisticCampaignAggregateProjection;
+import com.adverity.demo.simpledatawarehouse.projection.StatisticDatasourceAggregateProjection;
+import com.adverity.demo.simpledatawarehouse.projection.StatisticDefaultAggregateProjection;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
@@ -20,7 +22,9 @@ public class RepositoryRestConfig implements RepositoryRestConfigurer {
 
 		// @formatter:off
 		config.getProjectionConfiguration()
-			.addProjection(StatisticDefaultProjection.class);
+			.addProjection(StatisticDefaultAggregateProjection.class,
+					StatisticDatasourceAggregateProjection.class,
+					StatisticCampaignAggregateProjection.class);
 		// @formatter:on
 	}
 
