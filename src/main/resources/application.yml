@@ -1,7 +1,7 @@
-logging:
-  level:
-    com.adverity.demo.simpledatawarehouse: TRACE
-    # org.hibernate.tool.hbm2ddl: DEBUG
+#logging:
+#  level:
+#    com.adverity.demo.simpledatawarehouse: TRACE
+#    org.hibernate.tool.hbm2ddl: DEBUG
 
 spring:
 
@@ -22,3 +22,12 @@ springdoc:
     path: /api-docs
   swagger-ui:
     path: /swagger-ui-custom.html
+
+appengine:
+    deploy:
+      projectId: GCLOUD_CONFIG
+
+server:
+  tomcat:
+    remote-ip-header: x-forwarded-for
+    protocol-header: x-forwarded-proto

@@ -1,3 +1,13 @@
+buildscript {      // Configuration for building
+	repositories {
+		jcenter()      // Bintray's repository - a fast Maven Central mirror & more
+		mavenCentral()
+	}
+	dependencies {
+		classpath 'com.google.cloud.tools:appengine-gradle-plugin:2.4.1'
+	}
+}
+
 plugins {
 	id 'org.springframework.boot' version '2.3.4.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
@@ -5,15 +15,22 @@ plugins {
 	id 'war'
 }
 
+apply plugin: 'com.google.cloud.tools.appengine'
+
 group = 'com.adverity.demo'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 repositories {
+	jcenter()
 	mavenCentral()
 }
 
 dependencies {
+	providedCompile 'com.google.appengine:appengine:+'
+
+	implementation 'org.springframework.cloud:spring-cloud-gcp-starter:1.0.0.RELEASE'
+
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
 	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
@@ -34,9 +51,17 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
-	// testImplementation('org.springframework.security:spring-security-test')
 }
 
 test {
 	useJUnitPlatform()
+}
+
+appengine {
+	deploy {   // deploy configuration
+		stopPreviousVersion = true  // default - stop the current version
+		promote = true              // default - & make this the current version
+		version = "GCLOUD_CONFIG"
+		projectId = "GCLOUD_CONFIG"
+	}
 }
