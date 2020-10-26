@@ -41,9 +41,8 @@ dependencies {
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 
 	implementation 'org.springdoc:springdoc-openapi-ui:1.2.32'
-	implementation 'org.springdoc:springdoc-openapi-ui:1.2.32'
 	implementation 'org.springdoc:springdoc-openapi-webmvc-core:1.2.32'
- 	implementation 'org.springdoc:springdoc-openapi-data-rest:1.2.32'
+	implementation 'org.springdoc:springdoc-openapi-data-rest:1.2.32'
 
 	// database layer
 	runtimeOnly 'com.h2database:h2'
